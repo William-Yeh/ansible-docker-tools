@@ -1,0 +1,27 @@
+---
+# meta/main.yml
+
+galaxy_info:
+    author: williamyeh
+    description: Install common tools for Docker.
+    license: Public Domain
+
+    min_ansible_version: 1.8
+
+    platforms:
+        - name: Ubuntu
+          versions:
+              - precise
+              - trusty
+        - name: Debian
+          versions:
+              - wheezy
+        - name: EL
+          versions:
+              - 6
+              - 7
+
+    categories:
+        - system
+
+dependencies: []

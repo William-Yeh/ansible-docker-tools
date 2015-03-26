@@ -1,0 +1,42 @@
+---
+
+#
+# variables needed to be defined in user's playbook
+#
+
+
+#
+# user-configurable defaults
+#
+
+# default install path
+docker_tools_path: '/usr/local/bin'
+
+
+
+docker_tools_compose_version: 1.1.0
+docker_tools_compose_exe_url: "https://github.com/docker/compose/releases/download/{{ docker_tools_compose_version }}/docker-compose-Linux-x86_64"
+
+docker_tools_machine_version: v0.2.0-rc2
+docker_tools_machine_exe_url: "https://github.com/docker/machine/releases/download/{{ docker_tools_machine_version }}/docker-machine_linux-amd64"
+
+docker_tools_pipework_exe_url: https://raw.githubusercontent.com/jpetazzo/pipework/master/pipework
+
+docker_tools_dockergen_version: 0.3.9
+docker_tools_dockergen_tarball: "docker-gen-linux-amd64-{{ docker_tools_dockergen_version }}.tar.gz"
+docker_tools_dockergen_tarball_url: "https://github.com/jwilder/docker-gen/releases/download/{{ docker_tools_dockergen_version }}/{{ docker_tools_dockergen_tarball }}"
+
+docker_tools_dockerize_version: v0.0.2
+docker_tools_dockerize_tarball: "dockerize-linux-amd64-{{ docker_tools_dockerize_version }}.tar.gz"
+docker_tools_dockerize_tarball_url: "https://github.com/jwilder/dockerize/releases/download/{{ docker_tools_dockerize_version }}/{{ docker_tools_dockerize_tarball }}"
+
+docker_tools_cadvisor_version: 0.10.1
+docker_tools_cadvisor_exe_url: "https://github.com/google/cadvisor/releases/download/{{ docker_tools_cadvisor_version }}/cadvisor"
+
+
+# Some handy tools for managing Docker images and containers.
+# @see https://github.com/William-Yeh/docker-host-tools
+docker_tools_hosttools:
+  - "docker-rm-stopped"
+  - "docker-rmi-repo"
+  - "docker-inspect-attr"

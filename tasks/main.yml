@@ -1,0 +1,102 @@
+---
+# file: tasks/main.yml
+# Install docker tools.
+#
+#
+
+
+# @see http://docs.docker.com/compose/install/
+- name: install Docker Compose (was "Fig")
+  sudo: True
+  get_url:
+    url: "{{ docker_tools_compose_exe_url }}"
+    dest: "{{ docker_tools_path }}/docker-compose"
+    force: yes
+
+# @see https://docs.docker.com/machine/
+- name: install Docker Machine
+  sudo: True
+  get_url:
+    url: "{{ docker_tools_machine_exe_url }}"
+    dest: "{{ docker_tools_path }}/docker-machine"
+    force: yes
+
+# @see https://github.com/jpetazzo/pipework
+- name: install Pipework
+  sudo: True
+  get_url:
+    url: "{{ docker_tools_pipework_exe_url }}"
+    dest: "{{ docker_tools_path }}/pipework"
+    force: yes
+
+
+# @see https://github.com/jwilder/docker-gen
+- name: download docker-gen
+  sudo: True
+  get_url:
+    url: "{{ docker_tools_dockergen_tarball_url }}"
+    dest: "/tmp/{{ docker_tools_dockergen_tarball }}"
+    force: yes
+- name: install docker-gen
+  sudo: True
+  unarchive: 
+    src: "/tmp/{{ docker_tools_dockergen_tarball }}"
+    dest: "{{ docker_tools_path }}"
+    copy: no
+    mode: "a+x"
+
+
+
+# @see https://github.com/jwilder/dockerize
+- name: download dockerize
+  sudo: True
+  get_url:
+    url: "{{ docker_tools_dockerize_tarball_url }}"
+    dest: "/tmp/{{ docker_tools_dockerize_tarball }}"
+    force: yes
+- name: install dockerize
+  sudo: True
+  unarchive: 
+    src: "/tmp/{{ docker_tools_dockerize_tarball }}"
+    dest: "{{ docker_tools_path }}"
+    copy: no
+    mode: "a+x"
+
+
+# @see https://github.com/google/cadvisor
+- name: install cAdvisor
+  sudo: True
+  get_url:
+    url: "{{ docker_tools_cadvisor_exe_url }}"
+    dest: "{{ docker_tools_path }}/cadvisor"
+    force: yes
+
+
+# @see https://github.com/William-Yeh/docker-host-tools
+- name: install some handy tools for managing Docker images and containers
+  sudo: True
+  get_url:
+    url: "https://raw.githubusercontent.com/William-Yeh/docker-host-tools/master/{{ item }}"
+    dest: "{{ docker_tools_path }}"
+    force: yes
+  with_items: docker_tools_hosttools
+
+
+
+
+
+- name: chmod all exe files installed above
+  sudo: True
+  file: path="{{ docker_tools_path }}/{{ item }}" mode="a+x" owner="root" group="root"
+  with_items:
+    - docker-compose
+    - docker-machine
+    - pipework
+    - cadvisor
+    - docker-gen
+    - dockerize
+
+- name: chmod all exe files installed above
+  sudo: True
+  file: path="{{ docker_tools_path }}/{{ item }}" mode="a+x" owner="root" group="root"
+  with_items: docker_tools_hosttools
