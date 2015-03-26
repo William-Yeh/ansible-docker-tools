@@ -7,7 +7,7 @@ Install common tools for Docker.
 
 ## Summary
 
-Role name in Ansible Galaxy: **[williamyeh.docker-tools](https://galaxy.ansible.com/list#/roles/XXX)**
+Role name in Ansible Galaxy: **[williamyeh.docker-tools](https://galaxy.ansible.com/list#/roles/3230)**
 
 This Ansible role has the following features:
 
